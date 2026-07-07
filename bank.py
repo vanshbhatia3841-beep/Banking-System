@@ -1,15 +1,18 @@
+from getpass import getpass
+import os
 import mysql.connector
 from termcolor import colored
 import random
 from dotenv import load_dotenv
 
+load_dotenv()
 
 # Database Connection
 mydb = mysql.connector.connect(
-    host = DB_HOST,
-    user = DB_USER,
-    password = DB_PASSWORD,
-    database = DB_NAME,
+    host = os.getenv('DB_HOST'),
+    user = os.getenv('DB_USER'),
+    password = os.getenv('DB_PASSWORD'),
+    database = os.getenv('DB_NAME'),
     auth_plugin='mysql_native_password'
 )
 # Variables
@@ -67,7 +70,7 @@ def withdraw():
 
 if operation == 2:
     exis_username = input("Enter your username: ")
-    exis_password = input("Enter your password: ")
+    exis_password = getpass("Enter your password: ")
 
     check = mycursor.execute("SELECT Password FROM bank WHERE Username = %s", (exis_username,))
     result = mycursor.fetchone()
@@ -75,9 +78,9 @@ if operation == 2:
     if result:
         db_password = result[0]
         if db_password == exis_password:
-            print("Login Successful!")
+            print(colored("Login Successful!", "Green"))
         else:
-            print("Incorrect password.")
+            print(colored("Incorrect password.", "Red"))
     else:
         print("User not found")
 
@@ -114,11 +117,11 @@ elif operation == 1:
     Pan = input("PAN num: ")
     new_username = name[:5] + phone[:3] + Pan[2:6]
     print()
-    ini_pass = input("Create a 8 unit Password\n")
-    conf_pass = input("Confirm the Password\n")
+    ini_pass = getpass("Create a 8 unit Password\n")
+    conf_pass = getpass("Confirm the Password\n")
     print()
     if ini_pass == conf_pass:
-        print("Account Created")
+        print(colored("🎉Account Created🎉", "Light Green"))
         print("You can sign-in now!")
         print(f"Use the username: {new_username}")
         print(f"Account No. : {random.randint(1000000000, 9999999999)}")
