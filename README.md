@@ -1,134 +1,94 @@
 # 🏦 Bank Management System
 
-A Python-based command-line banking application that allows users to open a new bank account or sign in to an existing one — with features like balance check, deposit, and withdrawal — powered by a MySQL database.
+A command-line banking management system built in Python, backed by a MySQL database. Supports new account creation and existing user sign-in with basic balance, deposit, and withdrawal operations.
 
----
+## Features
 
-## 📋 Features
+- 🆕 **New Account Creation** — Collects user details and auto-generates a username and account number
+- 🔐 **Secure Sign-In** — Password-protected login for existing users
+- 💰 **Balance Inquiry** — Check your current balance anytime
+- 💵 **Deposit Funds** — Add money to your account
+- 💸 **Withdraw Funds** — Withdraw money with insufficient-funds protection
+- 🎨 **Colored CLI Output** — Clear, color-coded terminal feedback via `termcolor`
+- 🔒 **Environment-based Config** — Database credentials managed securely via `.env`
 
-- 🆕 **Open a new account** — collects personal details (name, phone, address, Aadhar, PAN, etc.) and auto-generates a username and account number
-- 🔐 **Secure login** — existing users can sign in with their username and password
-- 💰 **Check Balance** — view current account balance
-- ➕ **Deposit** — add funds to your account
-- ➖ **Withdraw** — withdraw funds with insufficient balance protection
-- 🎨 Colored terminal output using `termcolor`
-
----
-
-## 🛠️ Tech Stack
-
-- **Language:** Python 3.10+
-- **Database:** MySQL
-- **Libraries:** `mysql-connector-python`, `termcolor`
-
----
-
-## ⚙️ Setup & Installation
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/sbi-bank-management.git
-cd sbi-bank-management
-```
-
-### 2. Install dependencies
-
-```bash
-pip install mysql-connector-python termcolor python-dotenv
-```
-
-### 3. Configure the database connection
-
-Create a `.env` file in the project folder:
+## Project Structure
 
 ```
-DB_HOST=localhost
-DB_USER=your_mysql_username
-DB_PASSWORD=your_password
-DB_NAME=your_database_name
+├── bank.py         # Entry point — welcome screen & routing
+├── newacc.py       # New account creation logic
+├── existing.py     # Existing user login, balance, deposit & withdrawal
+├── db_config.py    # MySQL connection setup (env-based)
+└── .env            # Database credentials (not committed)
 ```
 
-### 4. Set up the MySQL database
+## Requirements
 
-Make sure your MySQL database has a table named `bank` with the following columns:
+- Python 3.10+
+- MySQL Server
+- Python packages:
+  ```
+  mysql-connector-python
+  python-dotenv
+  termcolor
+  ```
 
-| Column | Type |
-|---|---|
-| id | INT AUTO_INCREMENT PRIMARY KEY |
-| Name | VARCHAR |
-| Phone | LONG |
-| Address | VARCHAR |
-| City | VARCHAR |
-| State | VARCHAR |
-| email id | VARCHAR |
-| Aadhar | LONG |
-| Account No. | BIGINT |
-| Username | VARCHAR |
-| PAN | VARCHAR |
-| Password | BLOB |
-| Balance | FLOAT |
+## Setup
 
----
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/vanshbhatia3841-beep/Banking-System.git
+   cd Banking-System
+   ```
 
-## 🚀 Usage
+2. **Install dependencies**
+   ```bash
+   pip install mysql-connector-python python-dotenv termcolor
+   ```
 
-Run the script from your terminal:
+3. **Configure the database**
 
-```bash
-python bank.py
-```
+   Create a `BANK` table in your MySQL database with the following columns:
+   ```
+   Name, Phone, Address, City, State, `email id`, Aadhar,
+   `Account No.`, Username, PAN, Password, Balance
+   ```
 
-You will be greeted and prompted to choose an operation:
+4. **Set up environment variables**
 
-```
-Hi! Welcome to ____ bank.
-What do you like to do?
-      1) Open Account
-      2) Existing user? Sign in
-```
+   Create a `.env` file in the project root:
+   ```
+   DB_HOST=localhost
+   DB_USER=your_username
+   DB_PASSWORD=your_password
+   DB_NAME=your_database_name
+   ```
 
-### Opening an Account
-Enter your personal details. A unique username is auto-generated from your name, phone, and PAN number.
+5. **Run the application**
+   ```bash
+   python bank.py
+   ```
 
-### Signing In
-Enter your username and password to access your account dashboard:
+## Usage
 
-```
-1. Show Balance        2. Deposit
-3. Withdraw            4. Exit
-```
+On launch, you'll be prompted to:
 
----
+1. **Open Account** — Enter your details to register and receive a generated username and account number
+2. **Sign In** — Log in with your username and password to access:
+   - Show Balance
+   - Deposit
+   - Withdraw
+   - Log Out
 
-## 📸 Sample Output
+## 🚧 Coming Soon
 
-```
-Hi! Welcome to SBI bank.
-What do you like to do?
-      1) Open Account
-      2) Existing user? Sign in
-2
-Enter your username: Johns989AB12
-Enter your password: ********
-Login Successful!
+- 🔢 **TPIN Support** — An additional transaction PIN layer for verifying deposits and withdrawals
+- 🔁 **Account Transfer** — Transfer funds directly between two accounts within the system
 
-1. Show Balance          2. Deposit
-3. Withdraw              4. Exit
+## Disclaimer
 
-Enter your choice(1-4): 1
-5000.0
-```
+This project is for educational purposes only and is not intended for use with real financial data. Passwords are currently stored as plain text — this is on the roadmap to be improved with proper hashing.
 
----
+## License
 
-
-## 📄 License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
----
-
-## 👤 Author
-
-**Vansh** — [GitHub Profile](https://github.com/vanshbhatia3841-beep)
+MIT
