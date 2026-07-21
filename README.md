@@ -10,6 +10,8 @@ A command-line banking management system built in Python, backed by a MySQL data
 - 💵 **Deposit Funds** — Add money to your account
 - 💸 **Withdraw Funds** — Withdraw money with insufficient-funds protection
 - 🎨 **Colored CLI Output** — Clear, color-coded terminal feedback via `termcolor`
+- 🔢 **TPIN Support** — An additional transaction PIN layer for verifying deposits and withdrawals
+- 🔁 **Account Transfer** — Transfer funds directly between two accounts within the system
 - 🔒 **Environment-based Config** — Database credentials managed securely via `.env`
 
 ## Project Structure
@@ -79,11 +81,6 @@ On launch, you'll be prompted to:
    - Deposit
    - Withdraw
    - Log Out
-
-## 🚧 Coming Soon
-
-- 🔢 **TPIN Support** — An additional transaction PIN layer for verifying deposits and withdrawals
-- 🔁 **Account Transfer** — Transfer funds directly between two accounts within the system
 
 ## Disclaimer
 
